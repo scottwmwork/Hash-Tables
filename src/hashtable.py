@@ -51,15 +51,14 @@ class HashTable:
 
         Fill this in.
         '''
+        index = self._hash_mode(key)
         # If capacity is full print error
+        if self.storage[index] is not None:
+            print("Error: Key is in use")
+        else:
+            self.storage[key] = value
 
-        # Linked list chaining for collision handling
-        
-        # Insert value
-        self.storage[key] = value 
-        pass
-
-
+        # Add collision handling
 
     def remove(self, key):
         '''
@@ -70,11 +69,12 @@ class HashTable:
         Fill this in.
         '''
 
-        # remove a value
-        del self.storage[key]
+        index = self._hash_mod(key)
 
-        pass
-
+        if self.storage[key] is not None:
+            self.storage[index] = None 
+        else:
+            print("Warning: Key not found")
 
     def retrieve(self, key):
         '''
@@ -84,7 +84,9 @@ class HashTable:
 
         Fill this in.
         '''
-        pass
+        index = self.storage[key]
+        return self.storage[index]
+
 
 
     def resize(self):
@@ -94,9 +96,11 @@ class HashTable:
 
         Fill this in.
         '''
-        pass
-
-
+        old_storage = self.storage 
+        self.capacity = self.capacity * 2
+        self.storage = [None] * capacity 
+        for item in old_storage:
+            self.insert(item)
 
 if __name__ == "__main__":
     ht = HashTable(2)

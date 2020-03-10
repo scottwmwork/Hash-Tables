@@ -51,13 +51,13 @@ class HashTable:
 
         Fill this in.
         '''
-        index = self._hash_mode(key)
+        index = self._hash_mod(key)
         # If capacity is full print error
         if self.storage[index] is not None:
             print("Error: Key is in use")
         else:
             new_node = LinkedPair(key, value)
-            self.storage[key] = new_node
+            self.storage[index] = new_node
 
         # Add collision handling
 
@@ -85,7 +85,8 @@ class HashTable:
 
         Fill this in.
         '''
-        index = self.storage[key]
+
+        index = self._hash_mod(key)
         return self.storage[index]
 
 
@@ -99,9 +100,9 @@ class HashTable:
         '''
         old_storage = self.storage 
         self.capacity = self.capacity * 2
-        self.storage = [None] * capacity 
+        self.storage = [None] * self.capacity 
         for item in old_storage:
-            self.insert(item)
+            self.insert(item.key, item.value)
 
 if __name__ == "__main__":
     ht = HashTable(2)
@@ -122,7 +123,7 @@ if __name__ == "__main__":
     ht.resize()
     new_capacity = len(ht.storage)
 
-    print(f"\nResized from {old_capacity} to {new_capacity}.\n")
+    # print(f"\nResized from {old_capacity} to {new_capacity}.\n")
 
     # Test if data intact after resizing
     print(ht.retrieve("line_1"))

@@ -51,6 +51,12 @@ class HashTable:
 
         Fill this in.
         '''
+        # If capacity is full print error
+
+        # Linked list chaining for collision handling
+        
+        # Insert value
+        self.storage[key] = value 
         pass
 
 
@@ -63,6 +69,10 @@ class HashTable:
 
         Fill this in.
         '''
+
+        # remove a value
+        del self.storage[key]
+
         pass
 
 

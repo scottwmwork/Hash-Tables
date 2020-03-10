@@ -56,7 +56,8 @@ class HashTable:
         if self.storage[index] is not None:
             print("Error: Key is in use")
         else:
-            self.storage[key] = value
+            new_node = LinkedPair(key, value)
+            self.storage[key] = new_node
 
         # Add collision handling
 
@@ -129,5 +130,3 @@ if __name__ == "__main__":
     print(ht.retrieve("line_3"))
 
     print("")
-
-# This is a change to test pushing

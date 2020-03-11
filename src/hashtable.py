@@ -92,13 +92,13 @@ class HashTable:
         index = self._hash_mod(key)
 
         if self.storage[index].key == key:
-            self.storage[index] = None
+            self.storage[index].value = None
             return 
     
         next_linked_pair = self.storage[index]
         while next_linked_pair is not None:
             if next_linked_pair.key == key:
-                next_linked_pair = None
+                next_linked_pair.value = None
                 return 
             else:
                 next_linked_pair = next_linked_pair.next
